@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="App5.Views.LoginPage">
     <ContentPage.Content>
         <ScrollView>
@@ -19,14 +20,16 @@
                     <Label 
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="email"
+                        Text="E-mail"
                         TextColor="Black">
                     </Label>
 
                     <Entry
                         Grid.Row="0"
                         Grid.Column="1"
-                        Placeholder="Ingrese su correo">
+                        Placeholder="Ingrese su correo"
+                        Text="{Binding Email,Mode=TwoWay}">
+                        
                     </Entry>
 
                     <Label 
@@ -40,16 +43,19 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Ingrese su clave">
+                        Placeholder="Ingrese su clave"
+                        Text="{Binding Password, Mode=TwoWay}">
                     </Entry>
 
                 </Grid>
-                <ActivityIndicator>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning}">
                 </ActivityIndicator>
                 <Button
                     BackgroundColor="Navy"
                     Text="Login"
-                    TextColor="White">
+                    TextColor="White"
+                    Command="{Binding LoginCommand, Mode=TwoWay}">
                 </Button>
             </StackLayout>
         </ScrollView>
